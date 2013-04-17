@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# update version file
+
+rootdir=$(dirname $(readlink -f $0))
+pkgdir=wcut
+versionfile=$rootdir/$pkgdir/VERSION
+
+echo "updating version in $versionfile"
+git describe > $versionfile

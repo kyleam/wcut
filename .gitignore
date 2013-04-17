@@ -1,0 +1,7 @@
+*.pyc
+VERSION
+dist
+untracked
+build
+*.egg-info
+MANIFEST

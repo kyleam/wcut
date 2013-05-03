@@ -44,21 +44,20 @@ class TestCore(unittest.TestCase):
         self.assertEqual(list(match_fields(fields, searches)), [0, 1])
 
     def test_singlespace_delim(self):
-        lines = [(0, 'c1 c2 c3'),
-                 (1, '1 2 3')]
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '1 2 3')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3']]
-
-        result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], ' '))
+        result = list(process_lines(lines, ' ', ['c1', 'c2', 'c3']))
         self.assertEqual(result, expected_result)
 
     def test_tab_delim(self):
-        lines = [(0, 'c1\tc2\tc3'),
-                 (1, '1\t2\t3')]
+        lines = [(1, 'c1\tc2\tc3'),
+                 (2, '1\t2\t3')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3']]
 
-        result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], '\t'))
+        result = list(process_lines(lines, '\t', ['c1', 'c2', 'c3']))
         self.assertEqual(result, expected_result)
 
     def test_match_second_line_match(self):
@@ -68,40 +67,41 @@ class TestCore(unittest.TestCase):
         expected_result = [['matched',],
                            ['1',]]
 
-        result = list(process_lines(lines, 2, ['matched',], ' '))
+        result = list(process_lines(lines, ' ', ['matched',],
+                                    match_lineno=2))
         self.assertEqual(result, expected_result)
 
     def test_match_in_reverse_order(self):
-        lines = [(0, 'c1 c2 c3'),
-                 (1, '1 2 3')]
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '1 2 3')]
         expected_result = [['c2', 'c1'],
                            ['2', '1']]
 
-        result = list(process_lines(lines, 0, ['c2', 'c1'], ' '))
+        result = list(process_lines(lines, ' ', ['c2', 'c1']))
         self.assertEqual(result, expected_result)
 
     def test_multisource_lines(self):
-        lines = [(0, 'c1 c2 c3'),
-                 (1, '1 2 3'),
-                 (0, 'c1 c2 c3'),
-                 (1, '4 5 6')]
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '1 2 3'),
+                 (1, 'c1 c2 c3'),
+                 (2, '4 5 6')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3'],
                            ['4', '5', '6']]
 
-        result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], ' '))
+        result = list(process_lines(lines, ' ', ['c1', 'c2', 'c3']))
         self.assertEqual(result, expected_result)
 
     def test_multisource_lines_different_order(self):
-        lines = [(0, 'c1 c2 c3'),
-                 (1, '1 2 3'),
-                 (0, 'c1 c3 c2'),
-                 (1, '4 6 5')]
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '1 2 3'),
+                 (1, 'c1 c3 c2'),
+                 (2, '4 6 5')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3'],
                            ['4', '5', '6']]
 
-        result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], ' '))
+        result = list(process_lines(lines, ' ', ['c1', 'c2', 'c3']))
         self.assertEqual(result, expected_result)
 
     def test_write_fields(self):

@@ -3,7 +3,15 @@ import fileinput
 from itertools import product
 
 
-def match_fields(fields, searches, ignore_case=False, wholename=False, **kwargs):
+def match_fields(fields, searches, ignore_case=False, wholename=False):
+    """Return a generator with fields that match searches
+
+    Parameters
+    ----------
+    fields : iterable
+    searches : iterable
+    ignore_case, wholename : boolean
+    """
     already_yielded = set()
     if ignore_case:
         fields = [f.lower() for f in fields]
@@ -29,18 +37,36 @@ def _partial_match(search, target):
 
 
 def get_lines(files):
+    """Return generator with line number and line tuples for each file in
+    `files`
+    """
     for line in fileinput.input(files):
         yield fileinput.filelineno(), line
 
 
-def process_lines(lines, match_lineno, words, delim, **kwargs):
+def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
+    """Return generator of fields matching `searches`
+
+    Parameters
+    ----------
+    lines : iterable
+        returns line number (1-based) and line (str)
+    delim : str
+        delimiter to split line by to produce fields
+    searches : iterable
+        returns search (str) to match against line fields
+    match_lineno : int
+        line number of line to split and search fields
+
+    kwargs passed to `match_fields`
+    """
     processed_matchline = False
     for lineno, line in lines:
         fields = line.strip().split(delim)
         if lineno < match_lineno:
             continue
         elif lineno == match_lineno:
-            keep_fields = [f for f in match_fields(fields, words, **kwargs)]
+            keep_fields = list(match_fields(fields, searches, **kwargs))
             if processed_matchline:
                 ## already yielded header once, so don't repeat it for
                 ## additional files

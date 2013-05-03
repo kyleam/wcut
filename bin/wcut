@@ -26,7 +26,8 @@ if __name__ == '__main__':
     with stdout_check(args['-o'], source=wcut.__version__) as ofh:
         delim = args['--delimiter']
         lines = wcut.get_lines(args['FILE'])
-        fields = wcut.process_lines(lines, args['--line'], args['WORDS'], delim,
+        fields = wcut.process_lines(lines, delim, args['WORDS'],
+                                    match_lineno=args['--line'],
                                     wholename=args['--wholename'],
                                     ignore_case=args['--ignore-case'])
         wcut.write_fields(ofh, fields, delim)

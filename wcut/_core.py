@@ -17,16 +17,22 @@ def match_fields(fields, matches, ignore_case=False, **kwargs):
 
 def get_lines(files):
     for line in fileinput.input(files):
-        yield fileinput.lineno(), line
+        yield fileinput.filelineno(), line
 
 
 def process_lines(lines, match_lineno, words, delim, **kwargs):
+    processed_matchline = False
     for lineno, line in lines:
         fields = line.strip().split(delim)
         if lineno < match_lineno:
             continue
         elif lineno == match_lineno:
             keep_fields = [f for f in match_fields(fields, words, **kwargs)]
+            if processed_matchline:
+                ## already yielded header once, so don't repeat it for
+                ## additional files
+                continue
+            processed_matchline = True
         yield [fields[i] for i in keep_fields]
 
 

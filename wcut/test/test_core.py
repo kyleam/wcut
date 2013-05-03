@@ -74,7 +74,6 @@ class TestCore(unittest.TestCase):
                  (1, '4 5 6')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3'],
-                           ['c1', 'c2', 'c3'],
                            ['4', '5', '6']]
 
         result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], ' '))
@@ -87,7 +86,6 @@ class TestCore(unittest.TestCase):
                  (1, '4 6 5')]
         expected_result = [['c1', 'c2', 'c3'],
                            ['1', '2', '3'],
-                           ['c1', 'c2', 'c3'],
                            ['4', '5', '6']]
 
         result = list(process_lines(lines, 0, ['c1', 'c2', 'c3'], ' '))

@@ -9,7 +9,7 @@ setup(
     version=wcut.__version__,
     author='Kyle A. Meyer',
     author_email='meyerkya@gmail.com',
-    url = 'https://gitorious.org/wcut',
+    url = 'https://github.com/kyleam/wcut',
     packages=['wcut', 'wcut.deps'],
     scripts=['bin/wcut'],
     package_data={'wcut': ['VERSION']},

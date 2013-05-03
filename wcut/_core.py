@@ -64,10 +64,14 @@ def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
     """
     processed_matchline = False
     for lineno, line in lines:
-        fields = line.strip().split(delim)
         if lineno < match_lineno:
             continue
-        elif lineno == match_lineno:
+        if line.isspace():
+            yield line ## retain original blank spacing
+            continue
+
+        fields = line.strip().split(delim)
+        if lineno == match_lineno:
             keep_fields = list(match_fields(fields, searches, **kwargs))
             if processed_matchline:
                 ## already yielded header once, so don't repeat it for

@@ -85,6 +85,26 @@ class TestCore(unittest.TestCase):
         result = list(process_lines(lines, ' ', ['c2', 'c1']))
         self.assertEqual(result, expected_result)
 
+    def test_lines_ends_with_blank_line(self):
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '\n')]
+        expected_result = [['c1', 'c2'],
+                           '\n']
+
+        result = list(process_lines(lines, ' ', ['c1', 'c2']))
+        self.assertEqual(result, expected_result)
+
+    def test_lines_with_blank_line_inside(self):
+        lines = [(1, 'c1 c2 c3'),
+                 (2, '\n'),
+                 (3, '1 2 3')]
+        expected_result = [['c1', 'c2'],
+                           '\n',
+                           ['1', '2']]
+
+        result = list(process_lines(lines, ' ', ['c1', 'c2']))
+        self.assertEqual(result, expected_result)
+
     def test_multisource_lines(self):
         lines = [(1, 'c1 c2 c3'),
                  (2, '1 2 3'),

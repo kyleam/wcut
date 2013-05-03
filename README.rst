@@ -33,12 +33,20 @@ if it seems like an overkill for simple scripts like wcut. See
 Install
 -------
 
-To install::
+To install
+
+::
+
+    $ pip install -e git+https://github.com/kyleam/wcut.git@0.2.0#egg=wcut
+
+
+Or
+
+::
 
     $ git clone git@github.com:kyleam/wcut.git
-    $ cd /path/to/wcut/source
-    $ ./post-commit ## generate version number
-    $ pip install -e .
+    $ pip install -e wcut
+
 
 If you're not using `virtualenv
 <http://www.virtualenv.org/en/latest/>`_, you'll probably need elevated
@@ -58,3 +66,4 @@ contributions are welcome.
 
 And feel free to tell me that I'm an idiot because this can be done
 *simply* with standard command line tools. I'll happily convert.
+

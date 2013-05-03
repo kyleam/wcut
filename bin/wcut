@@ -1,46 +1,12 @@
 #!/usr/bin/env python3
 #; -*- mode: Python;-*-
-"""Select fields by header keywords
-
-Usage: wcut [options] WORDS [FILE]...
-
-Arguments:
-  WORDS
-      comma-separated keyword list
-  FILE
-      read from stdin if not present or -
-
-Options:
-  -h, --help
-      print help message
-  -l, --line=N
-      line N (1-based) of file to match WORDS against.
-      Any lines before this point are discarded.
-      [default: 1]
-  -d, --delimiter=DELIM
-      [default: " "]
-  -i, --ignore-case
-  -o OUTFILE
-
-Example:
-  $ echo "cat hat bat\\n1 2 3\\n4 5 6" | wcut hat,cat
-  hat cat
-  2 1
-  5 4
-
-"""
-import sys
-import fileinput
-from itertools import product
 
 import wcut
 from wcut.deps.docopt import docopt
 from wcut.deps.stdcheck import stdout_check
 
 
-def process_cl(args):
-    """Process command line arguments
-    """
+def process_commandline(args):
     delim = args['--delimiter']
     ## strip quotes
     if delim.startswith('"') and delim.endswith('"'):
@@ -55,38 +21,11 @@ def process_cl(args):
     args['--line'] = int(args['--line'])
     return(args)
 
-
-def match_fields(fields, matches, ignore_case=False, **kwargs):
-    already_yielded = set()
-    if ignore_case:
-        fields = [f.lower() for f in fields]
-        matches = [m.lower() for m in matches]
-    fields = [(i, field) for i, field in enumerate(fields)]
-    for match, field in product(matches, fields):
-        if match in field[1] and field[0] not in already_yielded:
-            yield field[0]
-            already_yielded.add(field[0])
-
-
-def process_files(files, match_lineno, words, delim, **kwargs):
-    for line in fileinput.input(files):
-        fields = line.strip().split(delim)
-        lineno = fileinput.lineno()
-        if lineno < match_lineno:
-            continue
-        elif lineno == match_lineno:
-            keep_fields = [f for f in match_fields(fields, words, **kwargs)]
-        fields = [fields[i] for i in keep_fields]
-        if fields:
-            try:
-                ofh.write(delim.join(fields) + '\n')
-            except IOError:  # pipes
-                sys.exit(0)
-
-
 if __name__ == '__main__':
-    args = process_cl(docopt(__doc__))
+    args = process_commandline(docopt(wcut._script_doc))
     with stdout_check(args['-o'], source=wcut.__version__) as ofh:
-        process_files(args['FILE'], args['--line'], args['WORDS'],
-                      delim=args['--delimiter'],
-                      ignore_case=args['--ignore-case'])
+        delim = args['--delimiter']
+        lines = wcut.get_lines(args['FILE'])
+        fields = wcut.process_lines(lines, args['--line'], args['WORDS'], delim,
+                                    ignore_case=args['--ignore-case'])
+        wcut.write_fields(ofh, fields, delim)

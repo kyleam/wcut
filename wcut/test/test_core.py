@@ -20,6 +20,19 @@ class TestCore(unittest.TestCase):
         self.assertEqual(list(match_fields(fields, searches, ignore_case=True)),
                          [0, 1])
 
+    def test_match_partial(self):
+        fields = ['seal', 'parrot']
+        searches = ['se', 'par']
+        self.assertEqual(list(match_fields(fields, searches)), [0, 1])
+
+    def test_match_wholename(self):
+        fields = ['seal', 'parrot']
+        searches = ['se', 'par']
+        self.assertEqual(list(match_fields(fields, searches, wholename=True)),
+                         [])
+        self.assertEqual(list(match_fields(fields, fields, wholename=True)),
+                         [0, 1])
+
     def test_match_with_repeated_fields(self):
         fields = ['seal', 'parrot', 'parrot']
         searches = ['seal', 'parrot']

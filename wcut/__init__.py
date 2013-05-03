@@ -24,6 +24,8 @@ Options:
   -d, --delimiter=DELIM
       [default: " "]
   -i, --ignore-case
+  -w, --wholename
+      don't allow partial matches for keywords
   -o OUTFILE
 
 Example:

@@ -23,6 +23,8 @@ def match_fields(fields, searches, ignore_case=False, wholename=False):
 
     fields = [(i, field) for i, field in enumerate(fields)]
     for search, field in product(searches, fields):
+        if not search:  ## don't return all fields for ''
+            continue
         if match_found(search, field[1]) and field[0] not in already_yielded:
             yield field[0]
             already_yielded.add(field[0])

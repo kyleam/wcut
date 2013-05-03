@@ -13,6 +13,11 @@ class TestCore(unittest.TestCase):
         searches = ['seal', 'parrot']
         self.assertEqual(list(match_fields(fields, searches)), [])
 
+    def test_match_with_empty_field(self):
+        fields = ['f1', 'f2']
+        searches = ['']
+        self.assertEqual(list(match_fields(fields, searches)), [])
+
     def test_match_case_sensitive(self):
         fields = ['Seal', 'PARROT']
         searches = ['seal', 'parrot']

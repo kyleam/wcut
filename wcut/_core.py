@@ -1,4 +1,3 @@
-import sys
 import fileinput
 from itertools import product
 

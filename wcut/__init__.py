@@ -1,5 +1,5 @@
-from . import _version
-from ._core import get_lines, process_lines, write_fields
+from wcut import _version
+from wcut._core import get_lines, match_fields, process_lines, write_fields
 
 __fullversion__, __version__ = _version.get_version()
 

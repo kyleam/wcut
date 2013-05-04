@@ -1,7 +1,8 @@
 import unittest
 from io import StringIO
 
-from wcut._core import match_fields, process_lines, write_fields
+from wcut import match_fields, process_lines, write_fields
+
 
 class TestCore(unittest.TestCase):
 

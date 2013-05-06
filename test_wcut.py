@@ -6,9 +6,6 @@ from wcut import match_fields, process_lines, write_fields
 
 class TestCore(unittest.TestCase):
 
-    def setUp(self):
-        pass
-
     def test_no_matching_fields(self):
         fields = ['f1', 'f2']
         searches = ['seal', 'parrot']

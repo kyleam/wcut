@@ -19,10 +19,10 @@ def process_commandline(args):
 
     args['WORDS'] = args['WORDS'].split(',')
     args['--line'] = int(args['--line'])
-    return(args)
 
 if __name__ == '__main__':
-    args = process_commandline(docopt(wcut._script_doc))
+    args = docopt(wcut._script_doc)
+    process_commandline(args)
     with stdout_check(args['-o'], source=wcut.__version__) as ofh:
         delim = args['--delimiter']
         lines = wcut.get_lines(args['FILE'])

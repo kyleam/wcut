@@ -95,6 +95,28 @@ def test_extract_fields_match_in_reverse_order():
     assert result == expected_result
 
 
+## no matches
+
+
+def test_extract_fields_no_matches():
+    lines = [(1, 'c1 c2 c3'),
+             (2, '1 2 3')]
+    expected_result = []
+
+    result = list(extract_fields(lines, ' ', ['notmatched']))
+    assert result == expected_result
+
+
+def test_extract_fields_no_matches_preheader():
+    lines = [(1, 'preheader'),
+             (2, 'c1 c2 c3'),
+             (3, '1 2 3')]
+    expected_result = [['preheader']]
+    result = list(extract_fields(lines, ' ', ['notmatched'],
+                                 match_lineno=2))
+    assert result == expected_result
+
+
 ## blank lines
 
 

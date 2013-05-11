@@ -161,7 +161,27 @@ def test_write_fields():
     assert result == expected_result
 
 
+## --remove-preheader
+
+
+def linegen(dummy, lines=None, linenos=None):
+    if lines  is None:
+        lines = ['# before header', 'c1 c2 c3', 'nodelim', '1 2 3']
+    if linenos is None:
+        linenos = range(1, len(lines) + 1)
+    for lineno, line in zip(linenos, lines):
+        yield lineno, line
+
+
+def test_remove_preheader():
+    func = io.suppress_preheader_lines(linegen, 2)
+    results = list(func(None))
+    expected = [(2, 'c1 c2 c3'), (3, 'nodelim'), (4, '1 2 3')]
+    assert results == expected
+
+
 ## process command line
+
 
 @pytest.fixture
 def args():

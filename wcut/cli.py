@@ -13,7 +13,10 @@ Options:
       print help message
   -l, --line=N
       line N (1-based) of file to match WORDS against.
+      Any lines before this point are printed unless -r option is set.
       [default: 1]
+  -r, --remove-preheader
+      remove the lines before line N
   -d, --delimiter=DELIM
       [default: " "]
   -i, --ignore-case

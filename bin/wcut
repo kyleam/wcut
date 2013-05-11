@@ -15,7 +15,9 @@ if __name__ == '__main__':
         delim = args['--delimiter']
         match_lineno = args['--line']
 
-        lines = io.get_lines(args['FILE'])
+        lines = io.get_lines(args['FILE'],
+                             args['--remove-preheader'])
+
         fields = wcut.process_lines(lines, delim, args['WORDS'],
                                     match_lineno=match_lineno,
                                     wholename=args['--wholename'],

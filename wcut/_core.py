@@ -54,13 +54,11 @@ def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
     """
     processed_matchline = False
     for lineno, line in lines:
-        if lineno < match_lineno:
-            continue
-        if line.isspace():
-            yield line ## retain original blank spacing
+        if lineno < match_lineno or delim not in line:
+            yield [line]
             continue
 
-        fields = line.strip().split(delim)
+        fields = line.split(delim)
         if lineno == match_lineno:
             keep_fields = list(match_fields(fields, searches, **kwargs))
             if processed_matchline:

@@ -6,7 +6,7 @@ def get_lines(files):
     `files`
     """
     for line in fileinput.input(files):
-        yield fileinput.filelineno(), line
+        yield fileinput.filelineno(), line.strip()
 
 
 def write_fields(ofh, field_lines, delim):

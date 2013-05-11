@@ -13,7 +13,6 @@ Options:
       print help message
   -l, --line=N
       line N (1-based) of file to match WORDS against.
-      Any lines before this point are discarded.
       [default: 1]
   -d, --delimiter=DELIM
       [default: " "]

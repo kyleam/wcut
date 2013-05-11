@@ -73,7 +73,8 @@ def test_match_second_line_match():
     lines = [(1, 'not considered'),
              (2, 'matched nomatch'),
              (3, '1 2')]
-    expected_result = [['matched',],
+    expected_result = [['not considered'],
+                       ['matched',],
                        ['1',]]
 
     result = list(process_lines(lines, ' ', ['matched',],
@@ -101,7 +102,7 @@ def test_lines_ends_with_blank_line():
     lines = [(1, 'c1 c2 c3'),
              (2, '\n')]
     expected_result = [['c1', 'c2'],
-                       '\n']
+                       ['\n']]
 
     result = list(process_lines(lines, ' ', ['c1', 'c2']))
     assert result == expected_result
@@ -112,7 +113,7 @@ def test_lines_with_blank_line_inside():
              (2, '\n'),
              (3, '1 2 3')]
     expected_result = [['c1', 'c2'],
-                       '\n',
+                       ['\n'],
                        ['1', '2']]
 
     result = list(process_lines(lines, ' ', ['c1', 'c2']))

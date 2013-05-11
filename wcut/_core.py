@@ -1,4 +1,3 @@
-import fileinput
 from itertools import product
 
 
@@ -37,14 +36,6 @@ def _partial_match(search, target):
     return search in target
 
 
-def get_lines(files):
-    """Return generator with line number and line tuples for each file in
-    `files`
-    """
-    for line in fileinput.input(files):
-        yield fileinput.filelineno(), line
-
-
 def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
     """Return generator of fields matching `searches`
 
@@ -78,8 +69,3 @@ def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
                 continue
             processed_matchline = True
         yield [fields[i] for i in keep_fields]
-
-
-def write_fields(ofh, field_lines, delim):
-    for fields in field_lines:
-        ofh.write(delim.join(fields) + '\n')

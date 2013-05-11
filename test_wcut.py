@@ -1,7 +1,7 @@
 import pytest
 from io import StringIO
 
-from wcut import match_fields, process_lines, write_fields
+from wcut import match_fields, process_lines, io
 
 
 @pytest.fixture
@@ -154,7 +154,7 @@ def test_write_fields():
     ofh = StringIO()
     towrite = [['c1', 'c2'],
                ['1', '2']]
-    write_fields(ofh, towrite, ' ')
+    io.write_fields(ofh, towrite, ' ')
     result = ofh.getvalue()
     expected_result = 'c1 c2\n1 2\n'
     assert result == expected_result

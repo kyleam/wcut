@@ -117,6 +117,34 @@ def test_extract_fields_no_matches_preheader():
     assert result == expected_result
 
 
+def test_extract_fields_no_matches_preheader_wronglineo():
+    lines = [(1, 'preheader'), (2, 'c1 c2 c3'),
+             (3, '1 2 3')]
+    expected_result = [['preheader']]
+    result = list(extract_fields(lines, ' ', ['c1'],
+                                 match_lineno=1))
+    assert result == expected_result
+
+
+def test_extract_fields_match_lineno_toobig():
+    lines = [(1, 'c1 c2 c3'),
+             (2, '1 2 3')]
+    ## treated as preheader
+    expected_result = [[i[1]] for i in lines]
+    result = list(extract_fields(lines, ' ', ['c1'],
+                                 match_lineno=3))
+    assert result == expected_result
+
+
+def test_extract_fields_match_lineno_toosmall():
+    lines = [(1, 'c1 c2 c3'),
+             (2, '1 2 3')]
+    expected_result = []
+    result = list(extract_fields(lines, ' ', ['c1'],
+                                 match_lineno=0))
+    assert result == expected_result
+
+
 ## blank lines
 
 

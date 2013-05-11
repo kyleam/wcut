@@ -53,6 +53,7 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     kwargs passed to `match_fields`
     """
     processed_matchline = False
+    keep_idx = []
     for lineno, line in lines:
         if lineno < match_lineno or delim not in line:
             yield [line]

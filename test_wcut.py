@@ -1,7 +1,7 @@
 import pytest
 from io import StringIO
 
-from wcut import match_fields, process_lines, io
+from wcut import match_fields, process_lines, io, cli
 
 
 @pytest.fixture
@@ -158,3 +158,44 @@ def test_write_fields():
     result = ofh.getvalue()
     expected_result = 'c1 c2\n1 2\n'
     assert result == expected_result
+
+
+## process command line
+
+@pytest.fixture
+def args():
+    defaults = {
+        'WORDS': 'search1,search2',
+        'FILE': None,
+        '--delimiter': '" "',
+        '--line': '1',
+        '--help': False,
+        '--remove-preheader': False,
+        '--only-delimited': False,
+        '--ignore-case': False,
+        '--wholename': False,
+        '-o': None,
+    }
+    return defaults
+
+
+def test_process_commandline_double_quote_delim(args):
+    cli.process_commandline(args)
+    assert args['--delimiter'] == ' '
+
+
+def test_process_commandline_single_quote_delim(args):
+    args['--delimiter'] = "' '"
+    cli.process_commandline(args)
+    assert args['--delimiter'] == ' '
+
+
+def test_process_commandline_tab_delim(args):
+    args['--delimiter'] = '\\t'
+    cli.process_commandline(args)
+    assert args['--delimiter'] == '\t'
+
+
+def test_process_commandline_words(args):
+    cli.process_commandline(args)
+    assert args['WORDS'] == ['search1', 'search2']

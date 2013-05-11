@@ -19,7 +19,7 @@ if __name__ == '__main__':
                              args['--remove-preheader'],
                              args['--only-delimited'])
 
-        fields = wcut.process_lines(lines, delim, args['WORDS'],
+        fields = wcut.extract_fields(lines, delim, args['WORDS'],
                                     match_lineno=match_lineno,
                                     wholename=args['--wholename'],
                                     ignore_case=args['--ignore-case'])

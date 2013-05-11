@@ -1,7 +1,7 @@
 import pytest
 from io import StringIO
 
-from wcut import match_fields, process_lines, io, cli
+from wcut import match_fields, extract_fields, io, cli
 
 
 @pytest.fixture
@@ -59,17 +59,17 @@ def test_match_with_repeated_searches(animals):
 ## delim
 
 
-def test_delims(delim):
+def test_extract_fields_delims(delim):
     expected = [['c1', 'c2', 'c3'], ['1', '2', '3']]
     lines = [(lineno, delim.join(line)) for lineno, line in enumerate(expected, 1)]
-    result = list(process_lines(lines, delim, ['c1', 'c2', 'c3']))
+    result = list(extract_fields(lines, delim, ['c1', 'c2', 'c3']))
     assert result == expected
 
 
 ## line skip
 
 
-def test_match_second_line_match():
+def test_extract_fields_match_second_line_match():
     lines = [(1, 'not considered'),
              (2, 'matched nomatch'),
              (3, '1 2')]
@@ -77,7 +77,7 @@ def test_match_second_line_match():
                        ['matched',],
                        ['1',]]
 
-    result = list(process_lines(lines, ' ', ['matched',],
+    result = list(extract_fields(lines, ' ', ['matched',],
                                 match_lineno=2))
     assert result == expected_result
 
@@ -85,30 +85,30 @@ def test_match_second_line_match():
 ## order change
 
 
-def test_match_in_reverse_order():
+def test_extract_fields_match_in_reverse_order():
     lines = [(1, 'c1 c2 c3'),
              (2, '1 2 3')]
     expected_result = [['c2', 'c1'],
                        ['2', '1']]
 
-    result = list(process_lines(lines, ' ', ['c2', 'c1']))
+    result = list(extract_fields(lines, ' ', ['c2', 'c1']))
     assert result == expected_result
 
 
 ## blank lines
 
 
-def test_lines_ends_with_blank_line():
+def test_extract_fields_lines_ends_with_blank_line():
     lines = [(1, 'c1 c2 c3'),
              (2, '\n')]
     expected_result = [['c1', 'c2'],
                        ['\n']]
 
-    result = list(process_lines(lines, ' ', ['c1', 'c2']))
+    result = list(extract_fields(lines, ' ', ['c1', 'c2']))
     assert result == expected_result
 
 
-def test_lines_with_blank_line_inside():
+def test_extract_fields_lines_with_blank_line_inside():
     lines = [(1, 'c1 c2 c3'),
              (2, '\n'),
              (3, '1 2 3')]
@@ -116,14 +116,14 @@ def test_lines_with_blank_line_inside():
                        ['\n'],
                        ['1', '2']]
 
-    result = list(process_lines(lines, ' ', ['c1', 'c2']))
+    result = list(extract_fields(lines, ' ', ['c1', 'c2']))
     assert result == expected_result
 
 
 ## multiple inputs
 
 
-def test_multisource_lines():
+def test_extract_fields_multisource_lines():
     lines = [(1, 'c1 c2 c3'),
              (2, '1 2 3'),
              (1, 'c1 c2 c3'),
@@ -131,11 +131,11 @@ def test_multisource_lines():
     expected_result = [['c1', 'c2', 'c3'],
                        ['1', '2', '3'],
                        ['4', '5', '6']]
-    result = list(process_lines(lines, ' ', ['c1', 'c2', 'c3']))
+    result = list(extract_fields(lines, ' ', ['c1', 'c2', 'c3']))
     assert result == expected_result
 
 
-def test_multisource_lines_different_order():
+def test_extract_fields_multisource_lines_different_order():
     lines = [(1, 'c1 c2 c3'),
              (2, '1 2 3'),
              (1, 'c1 c3 c2'),
@@ -144,7 +144,7 @@ def test_multisource_lines_different_order():
                        ['1', '2', '3'],
                        ['4', '5', '6']]
 
-    result = list(process_lines(lines, ' ', ['c1', 'c2', 'c3']))
+    result = list(extract_fields(lines, ' ', ['c1', 'c2', 'c3']))
     assert result == expected_result
 
 

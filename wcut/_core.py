@@ -36,7 +36,7 @@ def _partial_match(search, target):
     return search in target
 
 
-def process_lines(lines, delim, searches, match_lineno=1, **kwargs):
+def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     """Return generator of fields matching `searches`
 
     Parameters

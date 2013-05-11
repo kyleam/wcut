@@ -17,6 +17,9 @@ Options:
       [default: 1]
   -r, --remove-preheader
       remove the lines before line N
+  -s, --only-delimited
+      do not print lines not containing delimiters.
+      This has no effect on lines before line N.
   -d, --delimiter=DELIM
       [default: " "]
   -i, --ignore-case

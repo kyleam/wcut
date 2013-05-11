@@ -180,6 +180,24 @@ def test_remove_preheader():
     assert results == expected
 
 
+## --only-delimited
+
+
+def test_remove_nodelim():
+    func = io.suppress_no_delim_lines(linegen, ' ')
+    results = list(func(None))
+    expected = [(1, '# before header'), (2, 'c1 c2 c3'), (4, '1 2 3')]
+    assert results == expected
+
+
+def test_remove_preheader_and_no_delim():
+    func = io.suppress_preheader_lines(linegen, 2)
+    func = io.suppress_no_delim_lines(func, ' ')
+    results = list(func(None))
+    expected = [(2, 'c1 c2 c3'), (4, '1 2 3')]
+    assert results == expected
+
+
 ## process command line
 
 

@@ -17,7 +17,7 @@ def process_commandline(args):
 
 
 
-def get_lines(files, match_lineno=None):
+def get_lines(files, match_lineno=None, delim=None):
     """
     Parameters
     ----------
@@ -45,6 +45,15 @@ def suppress_preheader_lines(linefunc, match_lineno):
     def wrapped(files):
         for lineno, line in linefunc(files):
             if lineno < match_lineno:
+                continue
+            yield lineno, line
+    return wrapped
+
+
+def suppress_no_delim_lines(linefunc, delim):
+    def wrapped(*args, **kwargs):
+        for lineno, line in linefunc(*args, **kwargs):
+            if delim not in line:
                 continue
             yield lineno, line
     return wrapped

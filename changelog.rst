@@ -1,3 +1,14 @@
+0.3.0
+-----
+
+* Option to discard lines that don't contain the delimiter (similar
+  cut's ``-s`` flag)
+* Option to discard lines before the match line
+* Option to  complement the matching fields set
+* Don't print blank lines when no matches
+* Better handling of incorrect match line numbers
+
+
 0.2.0
 -----
 

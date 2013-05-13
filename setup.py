@@ -15,5 +15,6 @@ setup(
     license='GPLv3',
     description='Select fields by header keywords',
     long_description=open('README.rst').read(),
+    tests_require=['pytest >= 2.3'],
     install_requires=['docopt >= 0.6'],
 )

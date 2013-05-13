@@ -1,12 +1,11 @@
 #!/usr/bin/env python
-import os
 from distutils.core import setup
 
-import wcut
+from wcut import __version__
 
 setup(
     name='wcut',
-    version=wcut.__version__,
+    version=__version__,
     author='Kyle A. Meyer',
     author_email='meyerkya@gmail.com',
     url = 'https://github.com/kyleam/wcut',

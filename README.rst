@@ -52,11 +52,6 @@ If you're not using `virtualenv
 <http://www.virtualenv.org/en/latest/>`_, you'll probably need elevated
 permissions to do this.
 
-wcut is a simple little script. The package is there to bundle
-dependencies. One of these is the fantastic `docopt
-<http://docopt.org/>`_. The others are just personal modules that I have
-in my path.
-
 
 Issues
 ------

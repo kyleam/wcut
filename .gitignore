@@ -5,3 +5,4 @@ untracked
 build
 *.egg-info
 MANIFEST
+.tox

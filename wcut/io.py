@@ -1,22 +1,6 @@
 import fileinput
 
 
-def process_commandline(args):
-    delim = args['--delimiter']
-    ## strip quotes
-    if delim.startswith('"') and delim.endswith('"'):
-        delim = delim[1:-1]
-    elif delim.startswith("'") and delim.endswith("'"):
-        delim = delim[1:-1]
-    ## this will work in both python 2 and 3
-    delim = delim.encode('utf-8').decode('unicode-escape')
-    args['--delimiter'] = delim
-
-    args['WORDS'] = args['WORDS'].split(',')
-    args['--line'] = int(args['--line'])
-
-
-
 def get_lines(files, match_lineno=None, delim=None):
     """
     Parameters

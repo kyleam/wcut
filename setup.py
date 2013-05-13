@@ -17,4 +17,11 @@ setup(
     long_description=open('README.rst').read(),
     tests_require=['pytest >= 2.3'],
     install_requires=['docopt >= 0.6'],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Topic :: Utilities',
+        'Programming Language :: Python :: 3.2',
+        'Programming Language :: Python :: 3.3',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
+    ],
 )

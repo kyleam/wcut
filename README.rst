@@ -37,7 +37,7 @@ To install
 
 ::
 
-    $ pip install -e git+https://github.com/kyleam/wcut.git@0.2.0#egg=wcut
+    $ pip install -e git+https://github.com/kyleam/wcut.git@0.3.0#egg=wcut
 
 
 Or

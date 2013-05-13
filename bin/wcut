@@ -3,7 +3,6 @@
 
 from docopt import docopt
 
-from wcut.deps.stdcheck import stdout_check
 import wcut
 from wcut import io, cli
 
@@ -23,5 +22,5 @@ if __name__ == '__main__':
                                  ignore_case=args['--ignore-case'],
                                  complement=args['--complement'])
 
-    with stdout_check(args['-o'], source=wcut.__version__) as ofh:
+    with io.stdout_check(args['-o']) as ofh:
         io.write_fields(ofh, fields, delim)

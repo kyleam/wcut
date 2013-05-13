@@ -22,13 +22,6 @@ you could run::
 
   $ wcut -d',' rpkm,gname feng-rpkm.txt
 
-Although wcut plays nicely with pipes, one behaviour that might confuse
-people is the difference in the output of using ``>`` versus the ``-o``
-out file flag. Using ``-o`` will add information about the call of the
-script, the date, and the version. I like to have this information, even
-if it seems like an overkill for simple scripts like wcut. See
-``wcut.deps.source`` for more information.
-
 
 Install
 -------

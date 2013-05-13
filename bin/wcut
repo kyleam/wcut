@@ -20,7 +20,7 @@ if __name__ == '__main__':
                              args['--only-delimited'])
 
         fields = wcut.extract_fields(lines, delim, args['WORDS'],
-                                    match_lineno=match_lineno,
-                                    wholename=args['--wholename'],
-                                    ignore_case=args['--ignore-case'])
+                                     match_lineno=match_lineno,
+                                     wholename=args['--wholename'],
+                                     ignore_case=args['--ignore-case'])
         io.write_fields(ofh, fields, delim)

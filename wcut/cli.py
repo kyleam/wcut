@@ -15,6 +15,8 @@ Options:
       line N (1-based) of file to match WORDS against.
       Any lines before this point are printed unless -r option is set.
       [default: 1]
+  -v, --complement
+      complement the set of fields matched by WORDS
   -r, --remove-preheader
       remove the lines before line N
   -s, --only-delimited

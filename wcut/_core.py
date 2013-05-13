@@ -1,16 +1,15 @@
 from itertools import product
 
 
-def match_fields(fields, searches, ignore_case=False, wholename=False):
+def match_fields(fields, searches, ignore_case=False, wholename=False, complement=False):
     """Return a generator with fields that match searches
 
     Parameters
     ----------
     fields : iterable
     searches : iterable
-    ignore_case, wholename : boolean
+    ignore_case, wholename, complement : boolean
     """
-    already_yielded = set()
     if ignore_case:
         fields = [f.lower() for f in fields]
         searches = [s.lower() for s in searches]
@@ -20,12 +19,17 @@ def match_fields(fields, searches, ignore_case=False, wholename=False):
         match_found = _partial_match
 
     fields = [(i, field) for i, field in enumerate(fields)]
-    for search, field in product(searches, fields):
+    matched = []
+    for search, (idx, field) in product(searches, fields):
         if not search:  ## don't return all fields for ''
             continue
-        if match_found(search, field[1]) and field[0] not in already_yielded:
-            yield field[0]
-            already_yielded.add(field[0])
+        if match_found(search, field) and idx not in matched:
+            matched.append(idx)
+
+    if complement:
+        matched = [idx for idx in list(zip(*fields))[0] if idx not in matched]
+
+    return matched
 
 
 def _complete_match(search, target):

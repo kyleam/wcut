@@ -22,38 +22,43 @@ def delim(request):
 
 
 def test_no_matching_fields(digits, animals):
-    assert list(match_fields(digits, animals)) == []
+    assert match_fields(digits, animals) == []
 
 
 def test_match_with_empty_field(digits):
-    assert list(match_fields(digits, [''])) == []
+    assert match_fields(digits, ['']) == []
 
 
 def test_match_case_sensitive(animals):
     upper = [a.upper() for a in animals]
-    assert list(match_fields(upper, animals)) == []
-    assert list(match_fields(upper, animals, ignore_case=True)) == [0, 1]
+    assert match_fields(upper, animals) == []
+    assert match_fields(upper, animals, ignore_case=True) == [0, 1]
 
 
 def test_match_partial(animals):
     partial = [a[:2] for a in animals]
-    assert list(match_fields(animals, partial)) == [0, 1]
+    assert match_fields(animals, partial) == [0, 1]
 
 
 def test_match_wholename(animals):
     partial = [a[:2] for a in animals]
-    assert list(match_fields(animals, partial, wholename=True)) == []
-    assert list(match_fields(animals, animals, wholename=True)) == [0, 1]
+    assert match_fields(animals, partial, wholename=True) == []
+    assert match_fields(animals, animals, wholename=True) == [0, 1]
 
 
 def test_match_with_repeated_fields(animals):
     repeat = animals + animals[-1:]
-    assert list(match_fields(repeat, animals)) == [0, 1, 2]
+    assert match_fields(repeat, animals) == [0, 1, 2]
 
 
 def test_match_with_repeated_searches(animals):
     repeat = animals + ['parrot']
-    assert list(match_fields(animals, repeat)) == [0, 1]
+    assert match_fields(animals, repeat) == [0, 1]
+
+
+def test_match_search_with_complement(animals):
+    assert match_fields(animals, ['otter'], complement=True) == [0]
+    assert match_fields(animals, ['otter', 'seal'], complement=True) == []
 
 
 ## delim

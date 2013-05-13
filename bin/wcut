@@ -22,5 +22,6 @@ if __name__ == '__main__':
         fields = wcut.extract_fields(lines, delim, args['WORDS'],
                                      match_lineno=match_lineno,
                                      wholename=args['--wholename'],
-                                     ignore_case=args['--ignore-case'])
+                                     ignore_case=args['--ignore-case'],
+                                     complement=args['--complement'])
         io.write_fields(ofh, fields, delim)

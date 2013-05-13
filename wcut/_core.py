@@ -1,7 +1,8 @@
 from itertools import product
 
 
-def match_fields(fields, searches, ignore_case=False, wholename=False, complement=False):
+def match_fields(fields, searches,
+                 ignore_case=False, wholename=False, complement=False):
     """Return a generator with fields that match searches
 
     Parameters

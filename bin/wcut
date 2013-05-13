@@ -11,17 +11,17 @@ from wcut import io, cli
 if __name__ == '__main__':
     args = docopt(wcut.cli.__doc__)
     cli.process_commandline(args)
+    delim = args['--delimiter']
+    match_lineno = args['--line']
+
+    lines = io.get_lines(args['FILE'],
+                         args['--remove-preheader'],
+                         args['--only-delimited'])
+    fields = wcut.extract_fields(lines, delim, args['WORDS'],
+                                 match_lineno=match_lineno,
+                                 wholename=args['--wholename'],
+                                 ignore_case=args['--ignore-case'],
+                                 complement=args['--complement'])
+
     with stdout_check(args['-o'], source=wcut.__version__) as ofh:
-        delim = args['--delimiter']
-        match_lineno = args['--line']
-
-        lines = io.get_lines(args['FILE'],
-                             args['--remove-preheader'],
-                             args['--only-delimited'])
-
-        fields = wcut.extract_fields(lines, delim, args['WORDS'],
-                                     match_lineno=match_lineno,
-                                     wholename=args['--wholename'],
-                                     ignore_case=args['--ignore-case'],
-                                     complement=args['--complement'])
         io.write_fields(ofh, fields, delim)

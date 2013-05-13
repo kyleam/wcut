@@ -11,6 +11,7 @@ Arguments:
 Options:
   -h, --help
       print help message
+  -V, --version
   -l, --line=N
       line N (1-based) of file to match WORDS against.
       Any lines before this point are printed unless -r option is set.

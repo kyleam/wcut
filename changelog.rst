@@ -1,3 +1,10 @@
+0.3.1
+-----
+
+* Declare docopt as dependency instead of bundling
+* Prepare for PyPI
+
+
 0.3.0
 -----
 

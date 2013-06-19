@@ -11,7 +11,6 @@ setup(
     url = 'https://github.com/kyleam/wcut',
     packages=['wcut'],
     scripts=['bin/wcut'],
-    package_data={'wcut': ['VERSION']},
     license='GPLv3',
     description='Select fields by header keywords',
     long_description=open('README.rst').read(),

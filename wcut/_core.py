@@ -7,7 +7,7 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     Parameters
     ----------
     lines : iterable
-        returns line number (1-based) and line (str)
+        provides line number (1-based) and line (str)
     delim : str
         delimiter to split line by to produce fields
     searches : iterable

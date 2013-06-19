@@ -26,7 +26,7 @@ def get_lines(files, match_lineno=None, delim=None):
     ----------
     files : list of str
     match_lineno : None or int
-        if given, lines before this are discared
+        if given, lines before this are discarded
     """
     linefunc = _get_lines
     if match_lineno:

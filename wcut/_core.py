@@ -1,4 +1,32 @@
-from itertools import product
+import itertools
+
+
+def suppress_preheader_lines(lines, header):
+    """Discard `lines` before `header`
+
+    Parameters
+    ----------
+    lines : iterable
+        provides line number (1-based) and line (str)
+    header : int
+    """
+    return itertools.dropwhile(lambda line: line[0] < header,
+                               lines)
+
+
+def suppress_no_delim_lines(lines, delim):
+    """Discard `lines` that do not contain `delim`
+
+    Parameters
+    ----------
+    lines : iterable
+        provides line number (1-based) and line (str)
+    delim : str
+    """
+    for line in lines:
+        if delim not in line[1]:
+            continue
+        yield line
 
 
 def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
@@ -58,7 +86,7 @@ def match_fields(fields, searches,
 
     fields = [(i, field) for i, field in enumerate(fields)]
     matched = []
-    for search, (idx, field) in product(searches, fields):
+    for search, (idx, field) in itertools.product(searches, fields):
         if not search:  ## don't return all fields for ''
             continue
         if match_found(search, field) and idx not in matched:

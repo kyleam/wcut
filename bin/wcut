@@ -13,9 +13,13 @@ if __name__ == '__main__':
     delim = args['--delimiter']
     match_lineno = args['--line']
 
-    lines = io.get_lines(args['FILE'],
-                         args['--remove-preheader'],
-                         args['--only-delimited'])
+    lines = io.get_lines(args['FILE'])
+
+    if args['--remove-preheader']:
+        lines = wcut.suppress_preheader_lines(lines, match_lineno)
+    if args['--only-delimited']:
+        lines = wcut.suppress_no_delim_lines(lines, delim)
+
     fields = wcut.extract_fields(lines, delim, args['WORDS'],
                                  match_lineno=match_lineno,
                                  wholename=args['--wholename'],

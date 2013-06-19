@@ -1,7 +1,9 @@
 import pytest
 from io import StringIO
 
-from wcut import match_fields, extract_fields, io, cli
+from wcut import (match_fields, extract_fields,
+                  suppress_preheader_lines, suppress_no_delim_lines,
+                  io, cli)
 
 
 @pytest.fixture
@@ -219,38 +221,43 @@ def test_write_fields():
 ## --remove-preheader
 
 
-def linegen(dummy, lines=None, linenos=None):
-    if lines  is None:
-        lines = ['# before header', 'c1 c2 c3', 'nodelim', '1 2 3']
-    if linenos is None:
-        linenos = range(1, len(lines) + 1)
-    for lineno, line in zip(linenos, lines):
-        yield lineno, line
-
-
-def test_remove_preheader():
-    func = io.suppress_preheader_lines(linegen, 2)
-    results = list(func(None))
-    expected = [(2, 'c1 c2 c3'), (3, 'nodelim'), (4, '1 2 3')]
-    assert results == expected
+def test_remove_preheader_with_preheader():
+    lines = [(1, 'preheader'),
+             (2, '1 2 3')]
+    result = list(suppress_preheader_lines(lines, 2))
+    expected = [(2, '1 2 3')]
+    assert result == expected
 
 
 ## --only-delimited
 
 
-def test_remove_nodelim():
-    func = io.suppress_no_delim_lines(linegen, ' ')
-    results = list(func(None))
-    expected = [(1, '# before header'), (2, 'c1 c2 c3'), (4, '1 2 3')]
-    assert results == expected
+def test_remove_nodelim_with_nodelim():
+    lines = [(1, 'nodelim'),
+             (2, '1 2 3'),
+             (3, 'and_no_delim')]
+    result = list(suppress_no_delim_lines(lines, ' '))
+    expected = [(2, '1 2 3')]
+    assert result == expected
+
+
+def test_remove_nodelim_when_all_have_delim():
+    lines = [(1, '1 2 3'),
+             (2, '3 4 5')]
+    result = list(suppress_no_delim_lines(lines, ' '))
+    expected = [(1, '1 2 3'), (2, '3 4 5')]
+    assert result == expected
 
 
 def test_remove_preheader_and_no_delim():
-    func = io.suppress_preheader_lines(linegen, 2)
-    func = io.suppress_no_delim_lines(func, ' ')
-    results = list(func(None))
-    expected = [(2, 'c1 c2 c3'), (4, '1 2 3')]
-    assert results == expected
+    lines = [(1, 'preheader'),
+             (2, '1 2 3'),
+             (3, 'nodelim')]
+    lines = suppress_preheader_lines(lines, 2)
+    lines = suppress_no_delim_lines(lines, ' ')
+    result = list(lines)
+    expected = [(2, '1 2 3')]
+    assert result == expected
 
 
 ## process command line

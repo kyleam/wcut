@@ -1,3 +1,9 @@
+0.3.2
+-----
+
+* Fix --remove-preheader and --only-delimited flags
+
+
 0.3.1
 -----
 

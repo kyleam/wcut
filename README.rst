@@ -26,23 +26,18 @@ you could run::
 Install
 -------
 
-To install
+Install
 
 ::
 
   $ pip install wcut
 
-Or
+Install an editable version from the git repo
 
 ::
 
   $ git clone git@github.com:kyleam/wcut.git
   $ pip install -e wcut
-
-
-If you're not using `virtualenv
-<http://www.virtualenv.org/en/latest/>`_, you'll probably need elevated
-permissions to do this.
 
 
 Issues

@@ -6,8 +6,8 @@ from wcut import __version__
 setup(
     name='wcut',
     version=__version__,
-    author='Kyle A. Meyer',
-    author_email='meyerkya@gmail.com',
+    author='Kyle Meyer',
+    author_email='kyle@kyleam.com',
     url = 'https://github.com/kyleam/wcut',
     packages=['wcut'],
     scripts=['bin/wcut'],

@@ -1,3 +1,12 @@
+0.4.0
+-----
+
+* Raise exception if header line does not contain delimiter
+* Allow only one input file
+* Add functional tests
+* Documentation updates
+
+
 0.3.2
 -----
 

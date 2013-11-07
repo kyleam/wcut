@@ -1,0 +1,6 @@
+last_name first_name year
+Darwin Charles 1882
+Curie Marie 1934
+Turing Alan 1954
+Feynman Richard 1988
+##

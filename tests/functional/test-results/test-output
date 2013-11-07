@@ -1,0 +1,98 @@
+* DY - last name column
+last_name
+Darwin
+Curie
+Turing
+Feynman
+##
+* DY - last name column, complement
+first_name year
+Charles 1882
+Marie 1934
+Alan 1954
+Richard 1988
+##
+* DY - last name column, only delimiter
+last_name
+Darwin
+Curie
+Turing
+Feynman
+* DY - last name column, wholename, no match
+##
+* DY - last name column, wholename
+last_name
+Darwin
+Curie
+Turing
+Feynman
+##
+* DY - year and first name column, reverse order
+year first_name
+1882 Charles
+1934 Marie
+1954 Alan
+1988 Richard
+##
+* WM - config column
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Configured with
+C (recompile)
+Lua
+Anything
+C (recompile)
+* WM - config column, wrong match line
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+* WM - config column, no preheader
+Configured with
+C (recompile)
+Lua
+Anything
+C (recompile)
+* WM - config column, complement
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Window Manager,Written in
+alopex,C
+Awesome,C
+bspwm,C
+catwm,C
+* WM - config column, only delimiter
+Configured with
+C (recompile)
+Lua
+Anything
+C (recompile)
+* WM - config column, ignore case
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Configured with
+C (recompile)
+Lua
+Anything
+C (recompile)
+* WM - config column, wholename, no match
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+* WM - config column, wholename
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Configured with
+C (recompile)
+Lua
+Anything
+C (recompile)
+* WM - written in and window manager, reverse order
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Written in,Window Manager
+C,alopex
+C,Awesome
+C,bspwm
+C,catwm
+* WM - written in and window manager, reverse order, ignore case
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Written in,Window Manager
+C,alopex
+C,Awesome
+C,bspwm
+C,catwm
+* STDIN - first col
+first
+1
+4

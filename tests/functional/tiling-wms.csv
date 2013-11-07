@@ -1,0 +1,6 @@
+## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Window Manager,Written in,Configured with
+alopex,C,C (recompile)
+Awesome,C,Lua
+bspwm,C,Anything
+catwm,C,C (recompile)

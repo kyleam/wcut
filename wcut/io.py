@@ -19,11 +19,10 @@ class stdout_check:
             self.target.close()
 
 
-def get_lines(files):
-    """Return generator with line number and line for lines of each file in
-    `files`
+def get_lines(fname):
+    """Return generator with line number and line for file `fname`
     """
-    for line in fileinput.input(files):
+    for line in fileinput.input(fname):
         yield fileinput.filelineno(), line.strip()
 
 

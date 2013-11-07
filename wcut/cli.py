@@ -1,6 +1,6 @@
 """Select fields by header keywords
 
-Usage: wcut [options] WORDS [FILE]...
+Usage: wcut [options] WORDS FILE
 
 Arguments:
   WORDS

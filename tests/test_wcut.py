@@ -177,34 +177,6 @@ def test_extract_fields_lines_with_blank_line_inside():
     assert result == expected_result
 
 
-## multiple inputs
-
-
-def test_extract_fields_multisource_lines():
-    lines = [(1, 'c1 c2 c3'),
-             (2, '1 2 3'),
-             (1, 'c1 c2 c3'),
-             (2, '4 5 6')]
-    expected_result = [['c1', 'c2', 'c3'],
-                       ['1', '2', '3'],
-                       ['4', '5', '6']]
-    result = list(extract_fields(lines, ' ', ['c1', 'c2', 'c3']))
-    assert result == expected_result
-
-
-def test_extract_fields_multisource_lines_different_order():
-    lines = [(1, 'c1 c2 c3'),
-             (2, '1 2 3'),
-             (1, 'c1 c3 c2'),
-             (2, '4 6 5')]
-    expected_result = [['c1', 'c2', 'c3'],
-                       ['1', '2', '3'],
-                       ['4', '5', '6']]
-
-    result = list(extract_fields(lines, ' ', ['c1', 'c2', 'c3']))
-    assert result == expected_result
-
-
 ## write fields
 
 

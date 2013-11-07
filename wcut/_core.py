@@ -45,7 +45,6 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
 
     kwargs passed to `match_fields`
     """
-    processed_matchline = False
     keep_idx = []
     for lineno, line in lines:
         if lineno < match_lineno or delim not in line:
@@ -55,11 +54,6 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
         fields = line.split(delim)
         if lineno == match_lineno:
             keep_idx = list(match_fields(fields, searches, **kwargs))
-            if processed_matchline:
-                ## already yielded header once, so don't repeat it for
-                ## additional files
-                continue
-            processed_matchline = True
         keep_fields = [fields[i] for i in keep_idx]
 
         if keep_fields:

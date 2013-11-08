@@ -4,16 +4,17 @@
 from docopt import docopt
 
 import wcut
-from wcut import io, cli
+import wcut.cli
+import wcut.io
 
 
 if __name__ == '__main__':
     args = docopt(wcut.cli.__doc__, version=wcut.__version__)
-    cli.process_commandline(args)
+    wcut.cli.process_commandline(args)
     delim = args['--delimiter']
     match_lineno = args['--line']
 
-    lines = io.get_lines(args['FILE'])
+    lines = wcut.io.get_lines(args['FILE'])
 
     if args['--remove-preheader']:
         lines = wcut.suppress_preheader_lines(lines, match_lineno)
@@ -26,5 +27,5 @@ if __name__ == '__main__':
                                  ignore_case=args['--ignore-case'],
                                  complement=args['--complement'])
 
-    with io.stdout_check(args['-o']) as ofh:
-        io.write_fields(ofh, fields, delim)
+    with wcut.io.stdout_check(args['-o']) as ofh:
+        wcut.io.write_fields(ofh, fields, delim)

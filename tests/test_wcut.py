@@ -128,10 +128,9 @@ def test_extract_fields_no_matches_preheader_wronglineno():
     lines = [(1, 'preheader'), (2, 'c1 c2 c3'),
              (3, '1 2 3')]
     expected_result = [['preheader']]
-    result = list(wcut.extract_fields(lines, ' ', ['c1'],
-                                      match_lineno=1))
-    assert result == expected_result
-
+    with pytest.raises(wcut._core.WcutError):
+        result = list(wcut.extract_fields(lines, ' ', ['c1'],
+                                          match_lineno=1))
 
 def test_extract_fields_match_lineno_toobig():
     lines = [(1, 'c1 c2 c3'),

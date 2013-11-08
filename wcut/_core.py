@@ -29,6 +29,10 @@ def suppress_no_delim_lines(lines, delim):
         yield line
 
 
+class WcutError(Exception):
+    pass
+
+
 def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     """Return generator of fields matching `searches`
 
@@ -48,6 +52,8 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     keep_idx = []
     for lineno, line in lines:
         if lineno < match_lineno or delim not in line:
+            if lineno == match_lineno:
+                raise WcutError('Delimter not found')
             yield [line]
             continue
 

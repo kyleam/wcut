@@ -2,6 +2,7 @@
 #; -*- mode: Python;-*-
 
 from docopt import docopt
+import sys
 
 import wcut
 import wcut.cli
@@ -28,4 +29,10 @@ if __name__ == '__main__':
                                  complement=args['--complement'])
 
     with wcut.io.stdout_check(args['-o']) as ofh:
-        wcut.io.write_fields(ofh, fields, delim)
+        try:
+            wcut.io.write_fields(ofh, fields, delim)
+        except wcut._core.WcutError:
+            sys.stderr.write(
+                'Delimiter not found in line {}.\n'
+                'Run with --help to see options for specifying '
+                'delimiter and match line.\n'.format(match_lineno))

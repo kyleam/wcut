@@ -24,7 +24,7 @@ wcut year,first death-years.txt >> $testfile
 echo '* WM - config column' >> $testfile
 wcut -d',' -l2 Config tiling-wms.csv >> $testfile
 echo '* WM - config column, wrong match line' >> $testfile
-wcut -d',' -l1 Config tiling-wms.csv >> $testfile
+wcut -d',' -l1 Config tiling-wms.csv &>> $testfile
 echo '* WM - config column, no preheader' >> $testfile
 wcut -d',' -l2 -r Config tiling-wms.csv >> $testfile
 echo '* WM - config column, complement' >> $testfile

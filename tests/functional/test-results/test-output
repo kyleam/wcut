@@ -42,7 +42,8 @@ Lua
 Anything
 C (recompile)
 * WM - config column, wrong match line
-## from https://wiki.archlinux.org/index.php/Comparison_of_Tiling_Window_Managers
+Delimiter not found in line 1.
+Run with --help to see options for specifying delimiter and match line.
 * WM - config column, no preheader
 Configured with
 C (recompile)

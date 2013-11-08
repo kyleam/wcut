@@ -124,7 +124,7 @@ def test_extract_fields_no_matches_preheader():
     assert result == expected_result
 
 
-def test_extract_fields_no_matches_preheader_wronglineo():
+def test_extract_fields_no_matches_preheader_wronglineno():
     lines = [(1, 'preheader'), (2, 'c1 c2 c3'),
              (3, '1 2 3')]
     expected_result = [['preheader']]

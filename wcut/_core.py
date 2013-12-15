@@ -53,7 +53,8 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
     for lineno, line in lines:
         if lineno < match_lineno or delim not in line:
             if lineno == match_lineno:
-                raise WcutError('Delimter not found')
+                raise WcutError('Delimter not found in line {}'.format(
+                    match_lineno))
             yield [line]
             continue
 

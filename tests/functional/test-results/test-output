@@ -42,8 +42,7 @@ Lua
 Anything
 C (recompile)
 * WM - config column, wrong match line
-Delimiter not found in line 1.
-Run with --help to see options for specifying delimiter and match line.
+ERROR: Delimter not found in line 1
 * WM - config column, no preheader
 Configured with
 C (recompile)

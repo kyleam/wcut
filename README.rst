@@ -40,13 +40,13 @@ See ``wcut --help`` for a full list of options.
 Install
 -------
 
-Install
+wcut can be installed from PyPI using pip.
 
 ::
 
   $ pip install wcut
 
-Install an editable version from the git repo
+The latest version can be installed from the git repo.
 
 ::
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-## Run functional tests
+## Run functional tests.
 
 ## The output files are tracked, so changes in the results will be shown
-## in the status
+## in the status.
 
 testdir=test-results
 mkdir -p $testdir
@@ -45,5 +45,5 @@ wcut -d',' -l2 -i writ,man tiling-wms.csv >> $testfile
 echo '* STDIN - first col' >> $testfile
 echo -e "first second third\n1 2 3\n4 5 6" | wcut first - >> $testfile
 
-## out file test
+## Outfile test
 wcut last death-years.txt -o $testdir/dy-lastname-outfile

@@ -4,8 +4,7 @@ import fileinput
 
 class stdout_check:
     def __init__(self, target, stdout_flags=['-']):
-        """Open `target` as stdout if it is empty or in `stdout_flags`
-        """
+        """Open `target` as stdout if it is empty or in `stdout_flags`."""
         if not target or target in stdout_flags:
             self.target = sys.stdout
         else:
@@ -20,8 +19,7 @@ class stdout_check:
 
 
 def get_lines(fname):
-    """Return generator with line number and line for file `fname`
-    """
+    """Return generator with line number and line for file `fname`."""
     for line in fileinput.input(fname):
         yield fileinput.filelineno(), line.strip()
 

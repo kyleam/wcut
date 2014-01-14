@@ -20,7 +20,7 @@ def delim(request):
     return request.param
 
 
-## field matching
+## Field matching
 
 
 def test_no_matching_fields(digits, animals):
@@ -63,7 +63,7 @@ def test_match_search_with_complement(animals):
     assert wcut.match_fields(animals, ['otter', 'seal'], complement=True) == []
 
 
-## delim
+## Delim
 
 
 def test_extract_fields_delims(delim):
@@ -73,7 +73,7 @@ def test_extract_fields_delims(delim):
     assert result == expected
 
 
-## line skip
+## Line skip
 
 
 def test_extract_fields_match_second_line_match():
@@ -89,7 +89,7 @@ def test_extract_fields_match_second_line_match():
     assert result == expected_result
 
 
-## order change
+## Order change
 
 
 def test_extract_fields_match_in_reverse_order():
@@ -102,7 +102,7 @@ def test_extract_fields_match_in_reverse_order():
     assert result == expected_result
 
 
-## no matches
+## No matches
 
 
 def test_extract_fields_no_matches():
@@ -135,7 +135,7 @@ def test_extract_fields_no_matches_preheader_wronglineno():
 def test_extract_fields_match_lineno_toobig():
     lines = [(1, 'c1 c2 c3'),
              (2, '1 2 3')]
-    ## treated as preheader
+    ## Treated as preheader.
     expected_result = [[i[1]] for i in lines]
     result = list(wcut.extract_fields(lines, ' ', ['c1'],
                                       match_lineno=3))
@@ -151,7 +151,7 @@ def test_extract_fields_match_lineno_toosmall():
     assert result == expected_result
 
 
-## blank lines
+## Blank lines
 
 
 def test_extract_fields_lines_ends_with_blank_line():
@@ -176,7 +176,7 @@ def test_extract_fields_lines_with_blank_line_inside():
     assert result == expected_result
 
 
-## write fields
+## Write fields
 
 
 def test_write_fields():
@@ -231,7 +231,7 @@ def test_remove_preheader_and_no_delim():
     assert result == expected
 
 
-## process command line
+## Process command line
 
 
 @pytest.fixture

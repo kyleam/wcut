@@ -4,30 +4,30 @@ Usage: wcut [options] WORDS FILE
 
 Arguments:
   WORDS
-      comma-separated keyword list
+      Comma-separated keyword list to match against columns
   FILE
-      read from stdin if not present or -
+      This will be read from stdin if not present or "-".
 
 Options:
   -h, --help
-      print help message
+      Print help message.
   -V, --version
   -l, --line=N
-      line N (1-based) of file to match WORDS against.
+      Line N (1-based) of file to match WORDS against.
       Any lines before this point are printed unless -r option is set.
       [default: 1]
   -v, --complement
-      complement the set of fields matched by WORDS
+      Complement the set of fields matched by WORDS.
   -r, --remove-preheader
-      remove the lines before line N
+      Remove the lines before line N.
   -s, --only-delimited
-      do not print lines not containing delimiters.
+      Do not print lines not containing delimiters.
       This has no effect on lines before line N.
   -d, --delimiter=DELIM
       [default: " "]
   -i, --ignore-case
   -w, --wholename
-      don't allow partial matches for keywords
+      Do not allow partial matches for keywords.
   -o OUTFILE
 
 Example:
@@ -40,12 +40,12 @@ Example:
 
 def process_commandline(args):
     delim = args['--delimiter']
-    ## strip quotes
+    ## Strip quotes.
     if delim.startswith('"') and delim.endswith('"'):
         delim = delim[1:-1]
     elif delim.startswith("'") and delim.endswith("'"):
         delim = delim[1:-1]
-    ## this will work in both python 2 and 3
+    ## This should work in both python 2 and 3.
     delim = delim.encode('utf-8').decode('unicode-escape')
     args['--delimiter'] = delim
 

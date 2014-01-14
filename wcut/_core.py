@@ -2,12 +2,12 @@ import itertools
 
 
 def suppress_preheader_lines(lines, header):
-    """Discard `lines` before `header`
+    """Discard `lines` before `header`.
 
     Parameters
     ----------
     lines : iterable
-        provides line number (1-based) and line (str)
+        Provides line number (1-based) and line (str).
     header : int
     """
     return itertools.dropwhile(lambda line: line[0] < header,
@@ -15,12 +15,12 @@ def suppress_preheader_lines(lines, header):
 
 
 def suppress_no_delim_lines(lines, delim):
-    """Discard `lines` that do not contain `delim`
+    """Discard `lines` that do not contain `delim`.
 
     Parameters
     ----------
     lines : iterable
-        provides line number (1-based) and line (str)
+        Provides line number (1-based) and line (str).
     delim : str
     """
     for line in lines:
@@ -34,20 +34,20 @@ class WcutError(Exception):
 
 
 def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
-    """Return generator of fields matching `searches`
+    """Return generator of fields matching `searches`.
 
     Parameters
     ----------
     lines : iterable
-        provides line number (1-based) and line (str)
+        Provides line number (1-based) and line (str)
     delim : str
-        delimiter to split line by to produce fields
+        Delimiter to split line by to produce fields
     searches : iterable
-        returns search (str) to match against line fields
+        Returns search (str) to match against line fields.
     match_lineno : int
-        line number of line to split and search fields
+        Line number of line to split and search fields
 
-    kwargs passed to `match_fields`
+    Remaining keyword arguments are passed to `match_fields`.
     """
     keep_idx = []
     for lineno, line in lines:
@@ -69,7 +69,7 @@ def extract_fields(lines, delim, searches, match_lineno=1, **kwargs):
 
 def match_fields(fields, searches,
                  ignore_case=False, wholename=False, complement=False):
-    """Return fields that match searches
+    """Return fields that match searches.
 
     Parameters
     ----------

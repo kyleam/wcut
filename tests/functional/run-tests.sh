@@ -4,6 +4,11 @@
 ## The output files are tracked, so changes in the results will be shown
 ## in the status.
 
+if [[ -n $(git status -s) ]]; then
+    printf 'Working tree should be clean for tests.\n'
+    exit 1
+fi
+
 testdir=test-results
 mkdir -p $testdir
 testfile=$testdir/test-output
@@ -47,3 +52,10 @@ printf "first second third\n1 2 3\n4 5 6" | wcut first - >> $testfile
 
 ## Outfile test
 wcut last death-years.txt -o $testdir/dy-lastname-outfile
+
+if [[ -z $(git status -s) ]]; then
+    printf 'Tests passed.\n'
+else
+    printf 'Some tests failed.\n'
+    exit 2
+fi

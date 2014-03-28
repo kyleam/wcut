@@ -19,7 +19,6 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Topic :: Utilities',
-        'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
     ],

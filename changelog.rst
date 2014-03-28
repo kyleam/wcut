@@ -1,3 +1,11 @@
+1.0.0
+-----
+
+* Change command-line handling of column names.
+* Fix handling of broken pipes when passing output to commands like
+  `head`.
+
+
 0.4.0
 -----
 

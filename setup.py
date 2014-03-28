@@ -17,7 +17,7 @@ setup(
     tests_require=['pytest >= 2.3'],
     install_requires=['docopt >= 0.6'],
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Topic :: Utilities',
         'Programming Language :: Python :: 3.3',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',

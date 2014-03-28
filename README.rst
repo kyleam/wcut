@@ -19,12 +19,12 @@ you would run
 
 ::
 
-  $ wcut -d',' gname feng-rpkm.txt
+  $ wcut -d',' feng-rpkm.txt gname
 
 Similar to cut, the ``--complement`` (or ``-v``) flag will return all
 the columns that do not match::
 
-  $ wcut -d',' -v gname feng-rpkm.txt
+  $ wcut -d',' -v feng-rpkm.txt gname
 
 
 If you wanted the ``rpkm`` and ``gname`` column, but in reverse order,
@@ -32,7 +32,7 @@ you could run
 
 ::
 
-  $ wcut -d',' rpkm,gname feng-rpkm.txt
+  $ wcut -d',' feng-rpkm.txt rpkm gname
 
 See ``wcut --help`` for a full list of options.
 
@@ -46,16 +46,8 @@ wcut can be installed from PyPI using pip.
 
   $ pip install wcut
 
-The latest version can be installed from the git repo.
-
-::
-
-  $ git clone git@github.com:kyleam/wcut.git
-  $ pip install -e wcut
-
 
 Issues
 ------
 
-Let me know if you have any problems with the program. Suggestions and
-contributions are welcome.
+Please report any issues on `GitHub <https://github.com/kyleam/wcut>`_.

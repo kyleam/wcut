@@ -26,4 +26,8 @@ def get_lines(fname):
 
 def write_fields(ofh, field_lines, delim):
     for fields in field_lines:
-        ofh.write(delim.join(fields) + '\n')
+        try:
+            ofh.write(delim.join(fields) + '\n')
+        except BrokenPipeError:
+            ofh.close()
+            break

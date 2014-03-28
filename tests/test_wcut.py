@@ -237,7 +237,7 @@ def test_remove_preheader_and_no_delim():
 @pytest.fixture
 def args():
     defaults = {
-        'WORDS': 'search1,search2',
+        'NAME': ['search1', 'search2'],
         'FILE': None,
         '--delimiter': '" "',
         '--line': '1',
@@ -266,8 +266,3 @@ def test_process_commandline_tab_delim(args):
     args['--delimiter'] = '\\t'
     wcut.cli.process_commandline(args)
     assert args['--delimiter'] == '\t'
-
-
-def test_process_commandline_words(args):
-    wcut.cli.process_commandline(args)
-    assert args['WORDS'] == ['search1', 'search2']

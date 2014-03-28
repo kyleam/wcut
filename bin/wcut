@@ -22,7 +22,7 @@ if __name__ == '__main__':
     if args['--only-delimited']:
         lines = wcut.suppress_no_delim_lines(lines, delim)
 
-    fields = wcut.extract_fields(lines, delim, args['WORDS'],
+    fields = wcut.extract_fields(lines, delim, args['NAME'],
                                  match_lineno=match_lineno,
                                  wholename=args['--wholename'],
                                  ignore_case=args['--ignore-case'],
